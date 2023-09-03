@@ -1,0 +1,6 @@
+empid,name,contact,email,dept,doj,dob,empphoto
+101,Ramesh Sharma,9090909090,ramesh123@gmail.com,Developer,12-Feb-20,12-Jan-95,empphoto\noimg.jpg
+102,Suresh Agarwal,8989898989,suresh123@gmail.com,Engineer,13-Feb-20,13-Jan-95,empphoto\noimg.jpg
+103,Kamlesh,8787878787,kamlesh123@gmail.com,Programmer,14-Feb-20,14-Jan-95,empphoto\noimg.jpg
+104,Jenny Dom,4545454545,jenny123@gmail.com,Developer,15-Feb-20,15-Jan-95,empphoto\noimg.jpg
+105,Manoj Gupta,9090909090,manoj123@gmail.com,Programmer,16-Feb-20,16-Jan-95,empphoto\noimg.jpg

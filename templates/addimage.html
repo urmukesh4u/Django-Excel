@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block body %}
+<h1 class="text-center">Upload Images</h1><br><br>
+<form action="{% url 'imageapp:uploadimage' %}" method="POST" enctype="multipart/form-data">
+    <input type="text" name="filename" placeholder="Enter File Name">
+    <input type="file" multiple name="uploadfiles"> {% csrf_token %}
+    <button type="submit">File Upload</button>
+
+</form>
+
+{% comment %} {% for f in allImages %} {{f.f_name}} {{f.myfiles}} {% endfor %} {% endcomment %}
+
+<div class="container row my-3">
+    {% for f in allImages %}
+    <div class="col-md-3">
+        <div class="card">
+            <img src="{{f.myfiles.url}}" class="rounded" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{f.f_name}}</h5>
+            </div>
+          </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock body %}

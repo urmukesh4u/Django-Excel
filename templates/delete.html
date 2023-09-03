@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<h3>Are,You Sure?</h3>
+<form action="/delete/{{ object.id }}" method="POST">
+{% csrf_token %}
+<button type="submit">Yes</button>  
+
+</form>
+<a href="/addemployee"><button type="submit">NO</button></a>
+
+{% endblock body %}

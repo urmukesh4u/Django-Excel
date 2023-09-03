@@ -1,0 +1,85 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+<h1 class="text-center">Add Employee</h1>
+<hr>
+<div class="container" style="width:50%;">
+    <form method="POST" action='/addemployee' enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="empid" class="form-label">Emp Id</label>
+        <input type="text" class="form-control" name="empid"><br />
+        <label for="name" class="form-label">Emp Name</label>
+        <input type="text" class="form-control" name="name"><br />
+        <label for="contact" class="form-label">Emp Contact</label>
+        <input type="text" class="form-control" name="contact"><br />
+        <label for="email" class="form-label">Emp Email</label>
+        <input type="text" class="form-control" name="email"><br />
+        <label for="dept" class="form-label">Emp Dept</label>
+        <input type="text" class="form-control" name="dept"><br />
+        <label for="doj" class="form-label">Emp DOJ</label>
+        <input type="text" class="form-control" name="doj"><br />
+        <label for="dob" class="form-label">Emp DOB</label>
+        <input type="text" class="form-control" name="dob"><br />
+        <label for="empphoto" class="form-label">Emp Photo</label>
+        <input type="file" class="form-control" name="empphoto"><br />
+        <button type="submit" class="btn btn-primary">Add Details</button>
+    </form>
+</div>
+<h1 class="text-center">Employee Details</h1>
+<hr>
+
+<div class="container">
+    <table style="width:100%;" id="tabl">
+        <tr>
+            <th>Emp Id</th>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Email</th>
+            <th>Dept</th>
+            <th>DOJ</th>
+            <th>DOB</th>
+            <th>Photo</th>
+            <th>View Emp Details</th>
+            <th>
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Select All
+                </label>
+            </th>
+            <th><button type="submit" id="delete-btn" class="btn btn-danger" onclick="getvalues()">Delete</button></th>
+        </tr>
+        {% for emp in emp_details %}
+        <tr>
+            <td>{{emp.empid}}</td>
+            <td>{{emp.name}}</td>
+            <td>{{emp.contact}}</td>
+            <td>{{emp.email}}</td>
+            <td>{{emp.dept}}</td>
+            <td>{{emp.doj}}</td>
+            <td>{{emp.dob}}</td>
+            {% comment %}
+            
+            <td><img src="{{emp.empphoto.url}}" width="100px" height="100px"></td> {% endcomment %}
+            <td><img src="{{emp.get_photo_url}}" width="100px" height="100px"></td>
+            <td><a href="/viewemp/{{ emp.id }}">View Details</a></td>
+            <td><input type="checkbox" value="{{emp.id}}"></td>
+        </tr>
+        {% endfor %}
+
+    </table>
+    <b id="displayvalues"></b>
+</div>
+<script>
+    function getvalues() {
+        var selected = new Array();
+        var chkbox = document.getElementById("tabl");
+        var selchk = chkbox.getElementByTagName("input");
+        for (var i = 0; i < selchk.lenght; i++) {
+            if (selchk[i].checked) {
+                selected.push(selchk[i].value);
+            }
+        }
+        if (selected.length > 0) {
+            document.getElementById("displayvalues").innerHTML = selected;
+        }
+    }
+</script>
+{% endblock body %}
